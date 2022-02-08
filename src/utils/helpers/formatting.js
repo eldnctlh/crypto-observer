@@ -3,5 +3,5 @@ export const formatDecimals = (value, decimals) => {
 }
 
 export const getTotalInUSD = (amount, price) => {
-    return amount * price
+    return (amount * price).toFixed(2)
 }

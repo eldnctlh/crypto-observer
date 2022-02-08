@@ -1,0 +1,28 @@
+@import '~antd/dist/antd.css';
+
+p, span, h1, h2, h3, h4, h5, h6, strong {
+    color: white;
+}
+
+.ant-typography {
+    color: white;
+}
+
+body {
+    background: linear-gradient(
+            180deg
+            ,#2d5b6e,#203a43,#0f2027);
+    padding: 10vh 10vw;
+}
+
+.antd-btn-restyled {
+    background: transparent !important;
+}
+
+.card-antd-restyled {
+    background: transparent !important;
+}
+
+.ant-divider {
+    border-top: 1px solid #bbb;
+}

@@ -1,9 +1,10 @@
 import { useWeb3React } from '@web3-react/core'
+import {Button, Typography} from 'antd';
 import { injected } from '../../components/wallet/connectors'
 import Balances from '../../components/Balances'
 
 const Home = () => {
-    const { account, active, activate } = useWeb3React()
+    const { account, active, activate, chainId } = useWeb3React()
 
     const connect = async() => {
         try {
@@ -15,8 +16,17 @@ const Home = () => {
 
     return (
         <div>
-            <button onClick={connect}>Connect to MetaMask</button>
-            {active ? <span>Connected with <b>{account}</b></span> : <span>Not connected</span>}
+            <Button className="antd-btn-restyled" onClick={connect}>Connect to MetaMask</Button>
+            <Typography.Text style={{ color: 'white', marginLeft: '1rem' }}>
+                {
+                    active ?
+                        <>Connected with <b>{account}</b></>
+                        : <>Not connected</>
+                }
+            </Typography.Text>
+            {
+                chainId ? <Typography.Title style={{ color: 'white' }} level={4}>Chain Id: {chainId}</Typography.Title> : null
+            }
             <Balances />
         </div>
     );
