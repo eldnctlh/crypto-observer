@@ -33,12 +33,12 @@ const Balances = () => {
                         <Col span={3}><Typography.Title level={4} strong>{formattedAmount}</Typography.Title></Col>
                         <Col span={3}><Typography.Title level={4} strong>{price.price.toFixed(2)}$</Typography.Title></Col>
                         <Col span={3}><Typography.Title level={4} strong>{getTotalInUSD(formattedAmount, price.price)}$</Typography.Title></Col>
-                        <Col span={2}><Typography.Text>{renderIcon(price.percent_change_1h)}{price.percent_change_1h}%</Typography.Text></Col>
-                        <Col span={2}><Typography.Text>{renderIcon(price.percent_change_24h)}{price.percent_change_24h}%</Typography.Text></Col>
-                        <Col span={2}><Typography.Text>{renderIcon(price.percent_change_7d)}{price.percent_change_7d}%</Typography.Text></Col>
-                        <Col span={2}><Typography.Text>{renderIcon(price.percent_change_30d)}{price.percent_change_30d}%</Typography.Text></Col>
-                        <Col span={2}><Typography.Text>{renderIcon(price.percent_change_60d)}{price.percent_change_60d}%</Typography.Text></Col>
-                        <Col span={2}><Typography.Text>{renderIcon(price.percent_change_90d)}{price.percent_change_90d}%</Typography.Text></Col>
+                        <Col span={2}><Typography.Text>{renderIcon(price.percent_change_1h)}{price.percent_change_1h.toFixed(2)}%</Typography.Text></Col>
+                        <Col span={2}><Typography.Text>{renderIcon(price.percent_change_24h)}{price.percent_change_24h.toFixed(2)}%</Typography.Text></Col>
+                        <Col span={2}><Typography.Text>{renderIcon(price.percent_change_7d)}{price.percent_change_7d.toFixed(2)}%</Typography.Text></Col>
+                        <Col span={2}><Typography.Text>{renderIcon(price.percent_change_30d)}{price.percent_change_30d.toFixed(2)}%</Typography.Text></Col>
+                        <Col span={2}><Typography.Text>{renderIcon(price.percent_change_60d)}{price.percent_change_60d.toFixed(2)}%</Typography.Text></Col>
+                        <Col span={2}><Typography.Text>{renderIcon(price.percent_change_90d)}{price.percent_change_90d.toFixed(2)}%</Typography.Text></Col>
                     </Row>
                 )
             } else {
