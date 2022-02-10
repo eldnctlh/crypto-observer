@@ -19,6 +19,10 @@ body {
     background: transparent !important;
 }
 
+.antd-btn-restyled:disabled {
+    background: rgba(255,255,255, .3) !important;
+}
+
 .card-antd-restyled {
     background: transparent !important;
 }

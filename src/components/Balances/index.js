@@ -58,6 +58,7 @@ const Balances = () => {
                             onClick={updateBalances}
                         >
                             <ReloadOutlined style={{ color: '#fff' }} />
+                            Update
                         </Button>
                     </div>
                 ) : null
