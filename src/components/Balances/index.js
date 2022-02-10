@@ -7,7 +7,7 @@ import { formatDecimals, getTotalInUSD } from "../../utils/helpers/formatting";
 
 const Balances = () => {
     const { active, chainId } = useWeb3React()
-    const { balances } = useGetBalances()
+    const { balances, updatedAt } = useGetBalances()
 
     if (!active) {
         return null
@@ -48,22 +48,29 @@ const Balances = () => {
     }
 
     return (
-        <Card className="card-antd-restyled" style={{ marginTop: '2rem' }}>
-            <Row gutter={[16, 16]}>
-                <Col span={3}><Typography.Title level={4} strong>Title</Typography.Title></Col>
-                <Col span={3}><Typography.Title level={4} strong>Balance</Typography.Title></Col>
-                <Col span={3}><Typography.Title level={4} strong>Token price</Typography.Title></Col>
-                <Col span={3}><Typography.Title level={4} strong>Total price</Typography.Title></Col>
-                <Col span={2}><Typography.Title level={4} strong>1 hour</Typography.Title></Col>
-                <Col span={2}><Typography.Title level={4} strong>24 hours</Typography.Title></Col>
-                <Col span={2}><Typography.Title level={4} strong>7 days</Typography.Title></Col>
-                <Col span={2}><Typography.Title level={4} strong>30 days</Typography.Title></Col>
-                <Col span={2}><Typography.Title level={4} strong>60 days</Typography.Title></Col>
-                <Col span={2}><Typography.Title level={4} strong>90 days</Typography.Title></Col>
-            </Row>
-            <Divider />
-            {renderList()}
-        </Card>
+        <>
+            {
+                updatedAt ? (
+                    <Typography.Title style={{ color: 'white' }} level={5}>Last update: {updatedAt}</Typography.Title>
+                ) : null
+            }
+            <Card className="card-antd-restyled" style={{ marginTop: '2rem' }}>
+                <Row gutter={[16, 16]}>
+                    <Col span={3}><Typography.Title level={4} strong>Title</Typography.Title></Col>
+                    <Col span={3}><Typography.Title level={4} strong>Balance</Typography.Title></Col>
+                    <Col span={3}><Typography.Title level={4} strong>Token price</Typography.Title></Col>
+                    <Col span={3}><Typography.Title level={4} strong>Total price</Typography.Title></Col>
+                    <Col span={2}><Typography.Title level={4} strong>1 hour</Typography.Title></Col>
+                    <Col span={2}><Typography.Title level={4} strong>24 hours</Typography.Title></Col>
+                    <Col span={2}><Typography.Title level={4} strong>7 days</Typography.Title></Col>
+                    <Col span={2}><Typography.Title level={4} strong>30 days</Typography.Title></Col>
+                    <Col span={2}><Typography.Title level={4} strong>60 days</Typography.Title></Col>
+                    <Col span={2}><Typography.Title level={4} strong>90 days</Typography.Title></Col>
+                </Row>
+                <Divider />
+                {renderList()}
+            </Card>
+        </>
     )
 }
 

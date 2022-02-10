@@ -1,12 +1,17 @@
 import React from 'react'
 import Web3 from 'web3'
+import moment from 'moment'
 import { useWeb3React } from '@web3-react/core'
 import chains from '../../constants/chains'
 import { injected } from '../../components/wallet/connectors'
 
+let interval
+
 const useGetBalances = () => {
     const { account, active, chainId, deactivate, activate } = useWeb3React()
     const [balances, setBalances] = React.useState({})
+    const [lastUpdate, setLastUpdate] = React.useState(null)
+    const [updatedAt, setUpdatedAt] = React.useState(null)
 
     React.useEffect(() => {
         if(window.ethereum) {
@@ -18,7 +23,18 @@ const useGetBalances = () => {
 
             })
         }
+        return () => clearInterval(interval)
     }, [])
+
+    React.useEffect(() => {
+        clearInterval(interval)
+        interval = setInterval(() => {
+            if (lastUpdate) {
+                setUpdatedAt(lastUpdate.fromNow())
+            }
+        }, 10000)
+
+    }, [lastUpdate])
 
     const reactivate = async() => {
         await deactivate()
@@ -91,10 +107,11 @@ const useGetBalances = () => {
                     }
                 }
             }, {}))
+            setLastUpdate(moment())
         }
     }
 
-    return { balances }
+    return { balances, updatedAt }
 }
 
 export default useGetBalances
