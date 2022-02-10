@@ -52,7 +52,7 @@ const Balances = () => {
         <>
             {
                 updatedAt ? (
-                    <div className="flex-aligned">
+                    <div className="flex-aligned" style={{ marginTop: '2rem' }}>
                         <Typography.Title style={{ color: 'white', marginRight: '1rem' }} level={5}>Last update: {updatedAt}</Typography.Title>
                         <Button
                             className="antd-btn-restyled"

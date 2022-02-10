@@ -5,13 +5,17 @@ import Balances from '../../components/Balances'
 import ChainsTabs from '../../components/ChainsTabs'
 
 const Home = () => {
-    const { account, active, activate, chainId } = useWeb3React()
+    const { account, active, activate, chainId, deactivate } = useWeb3React()
 
     const connect = async() => {
-        try {
-            await activate(injected)
-        } catch (e) {
-            console.log(e)
+        if (active) {
+            deactivate()
+        } else {
+            try {
+                await activate(injected)
+            } catch (e) {
+                console.log(e)
+            }
         }
     }
 
@@ -19,7 +23,11 @@ const Home = () => {
         <div>
             <Row gutter={[16, 16]}>
                 <Col span={12}>
-                    <Button className="antd-btn-restyled" onClick={connect}>Connect to MetaMask</Button>
+                    <Button className="antd-btn-restyled" onClick={connect}>
+                        {
+                            active ? 'Deactivate' : 'Connect to MetaMask'
+                        }
+                    </Button>
                     <Typography.Text style={{ color: 'white', marginLeft: '1rem' }}>
                         {
                             active ?
@@ -36,9 +44,6 @@ const Home = () => {
                     ) : null
                 }
             </Row>
-            {
-                chainId ? <Typography.Title style={{ color: 'white', marginTop: '1rem', marginBottom: '1rem' }} level={4}>Chain Id: {chainId}</Typography.Title> : null
-            }
             <Balances />
         </div>
     );
