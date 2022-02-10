@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/crypto-observer/static/css/main.59d81934.chunk.css",
-    "main.js": "/crypto-observer/static/js/main.69736467.chunk.js",
-    "main.js.map": "/crypto-observer/static/js/main.69736467.chunk.js.map",
+    "main.js": "/crypto-observer/static/js/main.d9cf6bfb.chunk.js",
+    "main.js.map": "/crypto-observer/static/js/main.d9cf6bfb.chunk.js.map",
     "runtime-main.js": "/crypto-observer/static/js/runtime-main.a10c8c51.js",
     "runtime-main.js.map": "/crypto-observer/static/js/runtime-main.a10c8c51.js.map",
     "static/css/2.3ecfc32a.chunk.css": "/crypto-observer/static/css/2.3ecfc32a.chunk.css",
-    "static/js/2.61cb44d1.chunk.js": "/crypto-observer/static/js/2.61cb44d1.chunk.js",
-    "static/js/2.61cb44d1.chunk.js.map": "/crypto-observer/static/js/2.61cb44d1.chunk.js.map",
+    "static/js/2.536f6efb.chunk.js": "/crypto-observer/static/js/2.536f6efb.chunk.js",
+    "static/js/2.536f6efb.chunk.js.map": "/crypto-observer/static/js/2.536f6efb.chunk.js.map",
     "index.html": "/crypto-observer/index.html",
     "static/css/2.3ecfc32a.chunk.css.map": "/crypto-observer/static/css/2.3ecfc32a.chunk.css.map",
     "static/css/main.59d81934.chunk.css.map": "/crypto-observer/static/css/main.59d81934.chunk.css.map",
-    "static/js/2.61cb44d1.chunk.js.LICENSE.txt": "/crypto-observer/static/js/2.61cb44d1.chunk.js.LICENSE.txt"
+    "static/js/2.536f6efb.chunk.js.LICENSE.txt": "/crypto-observer/static/js/2.536f6efb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a10c8c51.js",
     "static/css/2.3ecfc32a.chunk.css",
-    "static/js/2.61cb44d1.chunk.js",
+    "static/js/2.536f6efb.chunk.js",
     "static/css/main.59d81934.chunk.css",
-    "static/js/main.69736467.chunk.js"
+    "static/js/main.d9cf6bfb.chunk.js"
   ]
 }
