@@ -12,6 +12,7 @@ const useGetBalances = () => {
     const [balances, setBalances] = React.useState({})
     const [lastUpdate, setLastUpdate] = React.useState(null)
     const [updatedAt, setUpdatedAt] = React.useState(null)
+    const [isLoading, setIsLoading] = React.useState(false)
 
     React.useEffect(() => {
         if(window.ethereum) {
@@ -48,6 +49,7 @@ const useGetBalances = () => {
 
     const updateBalances = async() => {
         if (active) {
+            setIsLoading(true)
             const chain = chains[chainId]
             const rpcURL = chain.rpc
             const web3 = new Web3(rpcURL)
@@ -109,10 +111,11 @@ const useGetBalances = () => {
             }, {}))
             setLastUpdate(moment())
             setUpdatedAt(moment().fromNow())
+            setIsLoading(false)
         }
     }
 
-    return { balances, updatedAt, updateBalances }
+    return { balances, updatedAt, updateBalances, isLoading }
 }
 
 export default useGetBalances

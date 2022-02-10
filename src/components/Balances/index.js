@@ -7,7 +7,7 @@ import { formatDecimals, getTotalInUSD } from "../../utils/helpers/formatting";
 
 const Balances = () => {
     const { active, chainId } = useWeb3React()
-    const { balances, updatedAt, updateBalances } = useGetBalances()
+    const { balances, updatedAt, updateBalances, isLoading } = useGetBalances()
 
     if (!active) {
         return null
@@ -24,6 +24,7 @@ const Balances = () => {
     const renderList = () => {
         return chains[chainId].tokens.map(token => {
             const matchedBalance = balances[token.id]
+
             if (matchedBalance) {
                 const formattedAmount = formatDecimals(matchedBalance.balance, token.decimals)
                 const price = matchedBalance.price
@@ -42,7 +43,7 @@ const Balances = () => {
                     </Row>
                 )
             } else {
-                return <Skeleton key={token.id} />
+                return <Skeleton title={false} key={token.id} />
             }
         })
     }
@@ -56,6 +57,7 @@ const Balances = () => {
                         <Button
                             className="antd-btn-restyled"
                             onClick={updateBalances}
+                            disabled={isLoading}
                         >
                             <ReloadOutlined style={{ color: '#fff' }} />
                             Update
