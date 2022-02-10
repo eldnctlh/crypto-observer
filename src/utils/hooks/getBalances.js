@@ -108,10 +108,11 @@ const useGetBalances = () => {
                 }
             }, {}))
             setLastUpdate(moment())
+            setUpdatedAt(moment().fromNow())
         }
     }
 
-    return { balances, updatedAt }
+    return { balances, updatedAt, updateBalances }
 }
 
 export default useGetBalances

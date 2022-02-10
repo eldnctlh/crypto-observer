@@ -26,3 +26,8 @@ body {
 .ant-divider {
     border-top: 1px solid #bbb;
 }
+
+.flex-aligned {
+    display: flex;
+    align-items: center;
+}

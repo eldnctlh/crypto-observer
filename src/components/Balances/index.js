@@ -1,13 +1,13 @@
 import { useWeb3React } from '@web3-react/core'
-import { Typography, Row, Col, Skeleton, Card, Divider } from 'antd';
-import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
+import { Typography, Row, Col, Skeleton, Card, Divider, Button } from 'antd';
+import { CaretUpOutlined, CaretDownOutlined, ReloadOutlined } from '@ant-design/icons';
 import chains from '../../constants/chains'
 import useGetBalances from "../../utils/hooks/getBalances";
 import { formatDecimals, getTotalInUSD } from "../../utils/helpers/formatting";
 
 const Balances = () => {
     const { active, chainId } = useWeb3React()
-    const { balances, updatedAt } = useGetBalances()
+    const { balances, updatedAt, updateBalances } = useGetBalances()
 
     if (!active) {
         return null
@@ -15,7 +15,7 @@ const Balances = () => {
 
     const renderIcon = (changePercentage) => {
         if (changePercentage > 0) {
-            return <CaretUpOutlined color="red" style={{ marginRight: '.5rem', color: '#77C66E' }} />
+            return <CaretUpOutlined style={{ marginRight: '.5rem', color: '#77C66E' }} />
         } else {
             return <CaretDownOutlined style={{ marginRight: '.5rem', color: '#ea3c53' }} />
         }
@@ -51,7 +51,15 @@ const Balances = () => {
         <>
             {
                 updatedAt ? (
-                    <Typography.Title style={{ color: 'white' }} level={5}>Last update: {updatedAt}</Typography.Title>
+                    <div className="flex-aligned">
+                        <Typography.Title style={{ color: 'white', marginRight: '1rem' }} level={5}>Last update: {updatedAt}</Typography.Title>
+                        <Button
+                            className="antd-btn-restyled"
+                            onClick={updateBalances}
+                        >
+                            <ReloadOutlined style={{ color: '#fff' }} />
+                        </Button>
+                    </div>
                 ) : null
             }
             <Card className="card-antd-restyled" style={{ marginTop: '2rem' }}>
