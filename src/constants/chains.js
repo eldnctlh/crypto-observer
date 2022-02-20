@@ -37,6 +37,18 @@ export default {
                 slug: 'fortressdao',
                 title: 'FORT',
                 decimals: 9
+            },
+            {
+                id: '0x136acd46c134e8269052c62a67042d6bdedde3c9',//memo
+                slug: 'wonderland',
+                title: 'MEMO',
+                decimals: 9
+            },
+            {
+                id: '0xb54f16fb19478766a268f172c9480f8da1a7c9c3',//time
+                slug: 'wonderland',
+                title: 'TIME',
+                decimals: 9
             }
         ],
         title: 'Avalanche'
