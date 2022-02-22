@@ -9,6 +9,7 @@ p, span, h1, h2, h3, h4, h5, h6, strong {
 }
 
 body {
+    min-width: 1620px;
     background: linear-gradient(
             180deg
             ,#2d5b6e,#203a43,#0f2027);
