@@ -96,21 +96,26 @@ const useGetBalances = () => {
             }
 
             const res = await Promise.all(promises)
-            const prices = await getPrices()
-
-            setBalances(res.reduce((acc, balance, index) => {
-                const coinmarketcapID = Object.keys(prices.data).find(e => prices.data[e].slug === chain.tokens[index].slug)
-                const price = prices.data[coinmarketcapID]
-                return {
-                    ...acc,
-                    [chain.tokens[index].id]: {
-                        balance,
-                        price: price.quote.USD
+            try {
+                const prices = await getPrices()
+                
+                setBalances(res.reduce((acc, balance, index) => {
+                    const coinmarketcapID = Object.keys(prices.data).find(e => prices.data[e].slug === chain.tokens[index].slug)
+                    const price = prices.data[coinmarketcapID]
+                    return {
+                        ...acc,
+                        [chain.tokens[index].id]: {
+                            balance,
+                            price: price.quote.USD
+                        }
                     }
-                }
-            }, {}))
-            setLastUpdate(moment())
-            setUpdatedAt(moment().fromNow())
+                }, {}))
+                setLastUpdate(moment())
+                setUpdatedAt(moment().fromNow())
+            } catch(err) {
+                console.log(err)
+            }
+
             setIsLoading(false)
         }
     }

@@ -13,6 +13,7 @@ const Home = () => {
         } else {
             try {
                 await activate(injected)
+                console.log('111')
             } catch (e) {
                 console.log(e)
             }

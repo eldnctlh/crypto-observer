@@ -1,4 +1,28 @@
 export default {
+    1: {//ethereum
+        rpc: 'https://rpc.ankr.com/eth',
+        tokens: [
+            {
+                id: '0xD533a949740bb3306d119CC777fa900bA034cd52',//usdc
+                slug: 'curve-dao-token',
+                title: 'Curve',
+                decimals: 18
+            },
+        ],
+        title: 'Ethereum'
+    },
+    10: {//optimism
+        rpc: 'https://mainnet.optimism.io',
+        tokens: [
+            {
+                id: '0x3c8B650257cFb5f272f799F5e2b4e65093a11a05',//usdc
+                slug: 'velodrome-finance',
+                title: 'Velo',
+                decimals: 18
+            },
+        ],
+        title: 'Optimism'
+    },
     250: {//fantom
         rpc: 'https://rpc.ftm.tools/',
         tokens: [
