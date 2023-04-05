@@ -75,7 +75,6 @@ const useGetBalances = () => {
                     }
                 ];
                 let contract = new web3.eth.Contract(minABI, tokenAddress);
-
                 const getBalance = async() => {
                     return await contract.methods.balanceOf(walletAddress).call();
                 }
@@ -94,8 +93,7 @@ const useGetBalances = () => {
                 const res = await fetch(url, params);
                 return await res.json()
             }
-
-            const res = await Promise.all(promises)
+            const res = await Promise.all(promises).catch(err => console.log(err))
             try {
                 const prices = await getPrices()
                 

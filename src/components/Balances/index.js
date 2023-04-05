@@ -15,11 +15,13 @@ const Balances = () => {
 
     const renderIcon = (changePercentage) => {
         if (changePercentage > 0) {
-            return <CaretUpOutlined style={{ marginRight: '.5rem', color: '#77C66E' }} />
+            return <CaretUpOutlined style={{ marginRight: '.2rem', color: '#77C66E' }} />
         } else {
-            return <CaretDownOutlined style={{ marginRight: '.5rem', color: '#ea3c53' }} />
+            return <CaretDownOutlined style={{ marginRight: '.2rem', color: '#ea3c53' }} />
         }
     }
+
+    const getProfit = (initial, current) => `${(100 * Math.abs( (initial - current) / ( (initial+current)/2 ) )).toFixed(2)}%`
 
     const renderList = () => {
         return chains[chainId].tokens.map(token => {
@@ -28,13 +30,15 @@ const Balances = () => {
             if (matchedBalance) {
                 const formattedAmount = formatDecimals(matchedBalance.balance, token.decimals)
                 const price = matchedBalance.price
+                const priceNumber = token.bdc ? matchedBalance.price.price * 1000000 : matchedBalance.price.price
                 return (
                     <Row gutter={[16, 16]} key={token.id} style={{ marginTop: '1rem' }}>
-                        <Col span={3}><Typography.Title level={4} strong>{token.title}:</Typography.Title></Col>
-                        <Col span={3}><Typography.Title level={4} strong>{formattedAmount}</Typography.Title></Col>
-                        <Col span={3}><Typography.Title level={4} strong>{price.price.toFixed(4)}$</Typography.Title></Col>
-                        <Col span={3}><Typography.Title level={4} strong>{getTotalInUSD(formattedAmount, price.price)}$</Typography.Title></Col>
-                        <Col span={2}><Typography.Text>{renderIcon(price.percent_change_1h)}{price.percent_change_1h.toFixed(2)}%</Typography.Text></Col>
+                        <Col span={2}><Typography.Text strong>{token.title}:</Typography.Text></Col>
+                        <Col span={2}><Typography.Text strong>{formattedAmount}</Typography.Text></Col>
+                        <Col span={2}><Typography.Text strong>{token.boughtAtPrice ? `${token.boughtAtPrice}$` : ''}</Typography.Text></Col>
+                        <Col span={2}><Typography.Text strong>{priceNumber.toFixed(4)}$</Typography.Text></Col>
+                        <Col span={2}><Typography.Text strong>{token.boughtAtPrice ? getProfit(token.boughtAtPrice, priceNumber) : null}</Typography.Text></Col>
+                        <Col span={2}><Typography.Text strong>{getTotalInUSD(formattedAmount, priceNumber)}$</Typography.Text></Col>
                         <Col span={2}><Typography.Text>{renderIcon(price.percent_change_24h)}{price.percent_change_24h.toFixed(2)}%</Typography.Text></Col>
                         <Col span={2}><Typography.Text>{renderIcon(price.percent_change_7d)}{price.percent_change_7d.toFixed(2)}%</Typography.Text></Col>
                         <Col span={2}><Typography.Text>{renderIcon(price.percent_change_30d)}{price.percent_change_30d.toFixed(2)}%</Typography.Text></Col>
@@ -67,16 +71,17 @@ const Balances = () => {
             }
             <Card className="card-antd-restyled" style={{ marginTop: '2rem' }}>
                 <Row gutter={[16, 16]}>
-                    <Col span={3}><Typography.Title level={4} strong>Title</Typography.Title></Col>
-                    <Col span={3}><Typography.Title level={4} strong>Balance</Typography.Title></Col>
-                    <Col span={3}><Typography.Title level={4} strong>Token price</Typography.Title></Col>
-                    <Col span={3}><Typography.Title level={4} strong>Total price</Typography.Title></Col>
-                    <Col span={2}><Typography.Title level={4} strong>1 hour</Typography.Title></Col>
-                    <Col span={2}><Typography.Title level={4} strong>24 hours</Typography.Title></Col>
-                    <Col span={2}><Typography.Title level={4} strong>7 days</Typography.Title></Col>
-                    <Col span={2}><Typography.Title level={4} strong>30 days</Typography.Title></Col>
-                    <Col span={2}><Typography.Title level={4} strong>60 days</Typography.Title></Col>
-                    <Col span={2}><Typography.Title level={4} strong>90 days</Typography.Title></Col>
+                    <Col span={2}><Typography.Text strong>Title</Typography.Text></Col>
+                    <Col span={2}><Typography.Text strong>Balance</Typography.Text></Col>
+                    <Col span={2}><Typography.Text strong>Bought at</Typography.Text></Col>
+                    <Col span={2}><Typography.Text strong>Token price</Typography.Text></Col>
+                    <Col span={2}><Typography.Text strong>Profit %</Typography.Text></Col>
+                    <Col span={2}><Typography.Text strong>Total price</Typography.Text></Col>
+                    <Col span={2}><Typography.Text strong>24 h</Typography.Text></Col>
+                    <Col span={2}><Typography.Text strong>7 d</Typography.Text></Col>
+                    <Col span={2}><Typography.Text strong>30 d</Typography.Text></Col>
+                    <Col span={2}><Typography.Text strong>60 d</Typography.Text></Col>
+                    <Col span={2}><Typography.Text strong>90 d</Typography.Text></Col>
                 </Row>
                 <Divider />
                 {renderList()}
